@@ -16,6 +16,10 @@ def negatif():
     image.save("image/resultat.jpg", "JPEG")
     variable.set("image/resultat.jpg")
 
+    label3 = Label(frame2, text="Image ici")
+    label3.pack()
+
+
 image=open("image/pomme.jpg")
 # On crée la fenêtre principale
 fenetre = Tk()
@@ -29,8 +33,8 @@ frame2.pack(side=LEFT,expand = True, fill = BOTH, padx=10, pady=10)
 # On crée un petit label
 label = Label(frame1, text="Image de départ")
 label.pack()
-label = Label(frame2, text="Image modifiée")
-label.pack()
+label2 = Label(frame2, text="Image modifiée")
+label2.pack()
 
 bouton_choix = Button(frame1, text="Négatif", command=negatif)
 bouton_choix.pack(side = BOTTOM, padx = 10, pady = 10)
@@ -50,10 +54,12 @@ canvas = Canvas(frame1, width=400, height=400)
 canvas.create_image(0,0, anchor=NW, image=image)
 canvas.pack(side=RIGHT)
 
-image2 = ImageTk.PhotoImage(Image.open(variable.get()))
-canvas = Canvas(frame2, width=400, height=400)
-canvas.create_image(0,0, anchor=NW, image=image2)
-canvas.pack(side=RIGHT)
+image2 = ImageTk.PhotoImage(Image.open("image/resultat.jpg"))
+
+canvas2 = Canvas(frame2, width=400, height=400)
+canvas2.create_image(0, 0, anchor=NW, image=image2)
+canvas2.pack(side=RIGHT)
+
 
 fenetre.mainloop()
 
