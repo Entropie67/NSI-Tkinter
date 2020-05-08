@@ -4,14 +4,18 @@ from PIL.Image import *
 from PIL import Image, ImageTk
 import random
 
+chemin = "image/pomme.jpg"
 
 def negatif():
     image=open("image/pomme.jpg")
     (L,H)= image.size
     for i in range(H): # On parcours les lignes de pixels de l'image
         for j in range(L): # On parcours les pixels de la ligne i
-            image.putpixel((j, i), (0, 0, 255))
-    image.save("resultat.jpg", "JPEG")
+            (r, v, b) = image.getpixel((j, i))
+            image.putpixel((j, i), (255 - r, 255 - v, 255- b))
+    image.save("image/resultat.jpg", "JPEG")
+    variable.set("image/resultat.jpg")
+
 image=open("image/pomme.jpg")
 # On crée la fenêtre principale
 fenetre = Tk()
@@ -37,7 +41,7 @@ bouton.pack(side=BOTTOM, expand = True, fill = BOTH, padx = 10, pady = 10)
 
 # Un input
 variable = StringVar()
-variable.set("texte pour rien")
+variable.set(chemin)
 entre = Entry(frame2, textvariable=variable, width=50, bg = '#999999', fg='blue')
 entre.pack(side = BOTTOM, padx = 10, pady = 10)
 
@@ -46,7 +50,7 @@ canvas = Canvas(frame1, width=400, height=400)
 canvas.create_image(0,0, anchor=NW, image=image)
 canvas.pack(side=RIGHT)
 
-image2 = ImageTk.PhotoImage(Image.open("image/pomme.jpg"))
+image2 = ImageTk.PhotoImage(Image.open(variable.get()))
 canvas = Canvas(frame2, width=400, height=400)
 canvas.create_image(0,0, anchor=NW, image=image2)
 canvas.pack(side=RIGHT)
