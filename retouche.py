@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter.messagebox import *
+from PIL.Image import *
 import random
 
 
@@ -13,7 +15,9 @@ def choix():
         "samedi",
         "dimanche"
     ]
-    print(random.choice(jours))
+    showinfo("Fonction lancée")
+
+    print(variable.get())
     return random.choice(jours)
 
 # On crée la fenêtre principale
@@ -24,7 +28,7 @@ fenetre['bg']='#FA8072'
 frame1 = Frame(fenetre, borderwidth=5, relief=GROOVE)
 frame1.pack(side=LEFT, padx=10, pady=10)
 frame2 = Frame(fenetre, borderwidth=5, relief=GROOVE)
-frame2.pack(side=LEFT, padx=10, pady=10)
+frame2.pack(side=RIGHT, padx=10, pady=10)
 # On crée un petit label
 label = Label(frame1, text="Image de départ")
 label.pack()
@@ -41,10 +45,13 @@ bouton.pack(side = LEFT, padx = 10, pady = 10)
 # Un input
 variable = StringVar()
 variable.set(str(choix()))
-entre = Entry(fenetre, textvariable=variable, width=50)
+entre = Entry(frame2, textvariable=variable, width=50, bg = '#999999', fg='blue')
 entre.pack(side = LEFT, padx = 10, pady = 10)
 
-
+image = PhotoImage(file="image/pomme.png")
+canvas = Canvas(frame1, width=400, height=400)
+canvas.create_image(0,0, anchor=NW, image=image)
+canvas.pack()
 
 fenetre.mainloop()
 
