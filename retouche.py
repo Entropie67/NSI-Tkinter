@@ -12,7 +12,7 @@ def negatif():
     for i in range(H): # On parcours les lignes de pixels de l'image
         for j in range(L): # On parcours les pixels de la ligne i
             (r, v, b) = image.getpixel((j, i))
-            image.putpixel((j, i), (255 - r, 255 - v, 255- b))
+            image.putpixel((j, i), (255 - r, 255 - v, 255 - b))
     image.save("image/resultat.jpg", "JPEG")
     variable.set("image/resultat.jpg")
 
