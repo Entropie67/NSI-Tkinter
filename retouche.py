@@ -26,44 +26,40 @@ fenetre.title("PhotoSturm")
 fenetre['bg'] = '#FA8072'
 
 
-frame1 = Frame(fenetre, borderwidth=5, relief=FLAT)
-frame1.pack(side=LEFT,expand = True, fill = BOTH, padx=10, pady=10)
-frame2 = Frame(fenetre, borderwidth=5, relief=FLAT)
-frame2.pack(side=LEFT,expand = True, fill = BOTH, padx=10, pady=10)
 # On crée un petit label
-label = Label(frame1, text="Image de départ")
-label.pack()
-label2 = Label(frame2, text="Image modifiée")
-label2.pack()
+# On crée les titres des deux parties principale de l'appli
+titre_depart = Label(fenetre, text="Image de départ")
+titre_fin = Label(fenetre, text="Image modifiée")
 
-bouton_choix = Button(frame1, text="Négatif", command=negatif)
-bouton_choix.pack(side = BOTTOM, padx = 10, pady = 10)
+titre_depart.grid(row = 0, column = 0, sticky = N, pady = 2)
+titre_fin.grid(row = 0, column = 2, sticky = N, pady = 2)
 
-
+bouton_choix = Button(fenetre, text="Négatif", command=negatif)
+bouton_choix.grid(row = 2, column = 0, sticky = W, pady = 2)
 
 # Un input
 variable = StringVar()
 variable.set(chemin)
-entre = Entry(frame2, textvariable=variable, width=50, bg = '#999999', fg='blue')
-entre.pack(side = BOTTOM, padx = 10, pady = 10)
+entre = Entry(fenetre, textvariable=variable, width=50, bg = '#999999', fg='blue')
+entre.grid(row = 2, column = 2, sticky = W, pady = 2)
 
 image = ImageTk.PhotoImage(originale)
-canvas = Canvas(frame1, width=400, height=400)
-canvas.create_image(0,0, anchor=NW, image=image)
-canvas.pack(side=RIGHT)
+canvas = Canvas(fenetre, width=400, height=400)
+canvas.create_image(50, 5, anchor=NW, image=image)
+canvas.grid(row = 1, column = 0, sticky = W, pady = 2)
 
 image2 = ImageTk.PhotoImage(Image.open("image/resultat.jpg"))
 
-canvas2 = Canvas(frame2, width=400, height=400)
+canvas2 = Canvas(fenetre, width=400, height=400)
 i =canvas2.create_image(0, 0, anchor=NW, image=image)
 print(i)
 
-canvas2.pack(side=RIGHT)
+canvas2.grid(row = 1, column = 2, sticky = W, pady = 2)
 
 
 # Le bouton qui permet de quitter l'application.
 bouton = Button(fenetre, text="Quit", fg="red", bg="white", relief="raised", overrelief ="sunken", command=fenetre.destroy)
-bouton.pack(side = BOTTOM, expand = True, fill = BOTH, padx = 10, pady = 10)
+bouton.grid(row = 3, column = 1, sticky = W, pady = 2)
 
 fenetre.mainloop()
 
