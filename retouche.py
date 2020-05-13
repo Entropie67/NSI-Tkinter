@@ -20,14 +20,15 @@ def negatif():
     canvas2.itemconfig(1, image=image2)
 
 
-# On crée la fenêtre principale
+# On crée la fenêtre principale avec un titre et un fond
 fenetre = Tk()
-fenetre.title("Mon logiciel")
-fenetre['bg']='#FA8072'
+fenetre.title("PhotoSturm")
+fenetre['bg'] = '#FA8072'
 
-frame1 = Frame(fenetre, borderwidth=5, relief=GROOVE)
+
+frame1 = Frame(fenetre, borderwidth=5, relief=FLAT)
 frame1.pack(side=LEFT,expand = True, fill = BOTH, padx=10, pady=10)
-frame2 = Frame(fenetre, borderwidth=5, relief=GROOVE)
+frame2 = Frame(fenetre, borderwidth=5, relief=FLAT)
 frame2.pack(side=LEFT,expand = True, fill = BOTH, padx=10, pady=10)
 # On crée un petit label
 label = Label(frame1, text="Image de départ")
@@ -38,9 +39,7 @@ label2.pack()
 bouton_choix = Button(frame1, text="Négatif", command=negatif)
 bouton_choix.pack(side = BOTTOM, padx = 10, pady = 10)
 
-# on crée un bouton
-bouton = Button(fenetre, text="Quit", command=fenetre.destroy)
-bouton.pack(side=BOTTOM, expand = True, fill = BOTH, padx = 10, pady = 10)
+
 
 # Un input
 variable = StringVar()
@@ -61,6 +60,10 @@ print(i)
 
 canvas2.pack(side=RIGHT)
 
+
+# Le bouton qui permet de quitter l'application.
+bouton = Button(fenetre, text="Quit", fg="red", bg="white", relief="raised", overrelief ="sunken", command=fenetre.destroy)
+bouton.pack(side = BOTTOM, expand = True, fill = BOTH, padx = 10, pady = 10)
 
 fenetre.mainloop()
 
