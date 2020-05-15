@@ -17,15 +17,15 @@ fenetre['bg'] = '#FA8072'
 image_originale = ImageTk.PhotoImage(originale)
 image_nouvelle = ImageTk.PhotoImage(nouvelle_image)
 image2 = ImageTk.PhotoImage(Image.open("image/resultat.jpg"))
-
+image3 = ImageTk.PhotoImage(Image.open("image/plusclair.jpg"))
 
 def negatif():
     for i in range(H): # On parcours les lignes de pixels de l'image
         for j in range(L): # On parcours les pixels de la ligne i
             (r, v, b) = originale.getpixel((j, i))
             nouvelle_image.putpixel((j, i), (255 - r, 255 - v, 255 - b))
-    nouvelle_image.save("image/resultat.jpg", "JPEG")
-    variable.set("image/resultat.jpg")
+    nouvelle_image.save("image/negatif.jpg", "JPEG")
+    variable.set("image/negatif.jpg")
     canvas2.itemconfig(1, image=image2)
 
 def claire():
@@ -33,9 +33,9 @@ def claire():
         for j in range(L):  # On parcours les pixels de la ligne i
             (r, v, b) = originale.getpixel((j, i))
             nouvelle_image.putpixel((j, i), (r + 50, v + 50, b + 50))
-    nouvelle_image.save("image/resultat.jpg", "JPEG")
-    variable.set("image/resultat.jpg")
-    image3 = ImageTk.PhotoImage(nouvelle_image)
+    nouvelle_image.save("image/plusclair.jpg", "JPEG")
+    variable.set("image/plusclair.jpg")
+
     canvas2.itemconfig(1, image=image3)
 
 
@@ -73,6 +73,7 @@ canvas2.grid(row=1, column=6, columnspan=6, sticky=N, pady=2)
 bouton = Button(fenetre, text="Quit", fg="red", bg="white", relief="raised",
                 overrelief="sunken", command=fenetre.destroy)
 bouton.grid(row=3, column=0, columnspan=12, sticky=N+W+E, pady=2)
+
 
 
 
