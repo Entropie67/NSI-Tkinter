@@ -1,31 +1,17 @@
 from tkinter import *
-from tkinter.messagebox import *
 from PIL.Image import *
 from PIL import Image, ImageTk
-import random
+from mon_image import MonImage
+
 # On crée la fenêtre principale avec un titre et un fond
 fenetre = Tk()
 fenetre.title("PhotoSturm")
 fenetre['bg'] = '#FA8072'
-class MonImage():
-
-    def __init__(self, img):
-        (L, H) = img.size
-        self.img_origine = img
-        self.hauteur = H
-        self.longueur = L
-        self.tkimage_origine = ImageTk.PhotoImage(img)
-        self.tkimage_modif = ImageTk.PhotoImage(img)
-
-    def info(self):
-        print("Mon image a une hauteur de {} et une longueur de {}".format(self.hauteur, self.longueur))
-
-
 
 CHEMIN = "image/pomme.jpg"
 originale = open(CHEMIN)
 
-mon_image= MonImage(originale)
+mon_image= MonImage(originale, ImageTk.PhotoImage(originale))
 mon_image.info()
 (L, H) = originale.size
 nouvelle_image = originale.copy()
@@ -51,7 +37,6 @@ def claire(n, im):
     variable.set("image/plusclair.jpg")
     im.tkimage = ImageTk.PhotoImage(nouvelle_image)
     canvas2.itemconfig(1, image=im.tkimage)
-
 
 def sombre(im):
     for i in range(H):  # On parcours les lignes de pixels de l'image
